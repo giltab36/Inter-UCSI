@@ -1,29 +1,90 @@
-<header class="header">
-    <div class="container">
-        <div class="logo">
-            <h1>Inter UCSI</h1>
+<?php
+
+if (empty($_SESSION['active'])) {
+    header('location: ../');
+}
+
+?>
+
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="./IMG/logoUcsi2.png" alt="">
         </div>
-        <nav class="menu">
-            <a href="">Inicio</a>
-            <a href="">Jugadores</a>
-            <a href="">Eqwuipos</a>
-            <a href="">Encuentros</a>
-        </nav>
+
+        <span class="logo_name">Inter UCSI</span>
     </div>
-</header>
-<div class="capa"></div>
-<!--	--------------->
-<input type="checkbox" id="btn-menu">
-<div class="container-menu">
-    <div class="cont-menu">
-        <nav>
-            <a href="#">Portafolio</a>
-            <a href="#">Servicios</a>
-            <a href="#">Suscribirse</a>
-            <a href="#">Facebook</a>
-            <a href="#">Youtube</a>
-            <a href="#">Instagram</a>
-        </nav>
-        <label for="btn-menu">✖️</label>
+
+    <div class="menu-items">
+        <ul class="nav-links">
+            <li><a href="index.php">
+                    <i class="uil uil-calendar-alt"></i>
+                    <span class="link-name">Dashborad</span>
+                </a>
+            </li>
+            <li><a href="jugadores.php">
+                    <i class="uil uil-clipboard-notes"></i>
+                    <span class="link-name">Registrar Jugadores</span>
+                </a>
+            </li>
+            <li><a href="equipos.php">
+                    <i class="uil uil-bed"></i>
+                    <span class="link-name">Registrar Equipos</span>
+                </a>
+            </li>
+            <li><a href="equipos_jugadores.php">
+                    <i class="uil uil-coffee"></i>
+                    <span class="link-name">Relacion</span>
+                </a>
+            </li>
+            <li><a href="encuentros.php">
+                    <i class="uil uil-file-graph"></i>
+                    <span class="link-name">Registrar Encuentros</span>
+                </a>
+            </li>
+            <li><a href="configuracion.php">
+                    <i class="uil uil-setting"></i>
+                    <span class="link-name">Configuración</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="logout-mode">
+            <li><a href="salir.php">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Cerrar Sesión</span>
+                </a>
+            </li>
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                    <span class="switch"></span>
+                </div>
+            </li>
+
+        </ul>
     </div>
-</div>
+</nav>
+
+<!-- <section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+
+        <div class="search-box">
+             <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search here..."> 
+        </div>
+
+        <img src="./IMG/user.jpg" alt="">
+    </div>
+
+
+
+    </div>
+</section> -->
+
+<script src="./JS/navlateral.js"></script>

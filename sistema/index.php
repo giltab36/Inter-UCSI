@@ -1,9 +1,8 @@
 <?php
-
-    session_start();
-    include "../conexion.php";
-
+session_start();
+include "../conexion.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +13,9 @@
 </head>
 
 <body>
-    <?php include "include/header.php"; ?>
-
+    <?php include "include/navlateral.php"; ?>
+    <section class="dashboard">
+    </section>
 </body>
 
 </html>

@@ -3,4 +3,4 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <link rel="stylesheet" type="text/css" href="css/navlateral.css">
 <?php include "functions.php"; ?>
-<link rel="icon" type="image/png" href="img/logo.png" sizes="16x16">
+<link rel="icon" type="image/png" href="img/logoUcsi2.png" sizes="16x16">
