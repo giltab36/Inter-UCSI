@@ -55,7 +55,7 @@ if ($row_empesa > 0) {
 
 <body>
     <?php include "include/navlateral.php"; ?>
-    <section id="dashboard">
+    <section class="dashboard">
 
         <div class="form_register">
             <h1 class="user_new"><i class="fa-solid fa-user-plus"></i> Registrar Equipo</h1>

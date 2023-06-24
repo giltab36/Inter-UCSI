@@ -18,7 +18,7 @@ if (!empty($_SESSION['active'])) {
             $user = mysqli_real_escape_string($conection, $_POST['nombre']);
             $pass = md5(mysqli_real_escape_string($conection, $_POST['clave']));
 
-            $query = mysqli_query($conection, "SELECT u.id, u.nombre, u.correo, u.state, u.rol, r.rol AS n_rol FROM usuario u
+            $query = mysqli_query($conection, "SELECT u.id, u.nombre, u.correo, u.state, u.rol, r.rol AS n_rol FROM usuarios u
                                                 INNER JOIN rol r ON u.rol = r.id
                                                 WHERE u.nombre = '$user' AND u.clave = '$pass' AND u.state = 1");
             mysqli_close($conection);

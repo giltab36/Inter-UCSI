@@ -7,23 +7,22 @@ include "../conexion.php";
 
 if (!empty($_POST)) {
     $alert = '';
-    if (empty($_POST['nombre']) || empty($_POST['usuario']) || empty($_POST['correo']) || empty($_POST['clave']) || empty($_POST['rol'])) {
+    if (empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['clave']) || empty($_POST['rol'])) {
         $alert = '<p class="msg_error">Todos los campos son obligatorios.</p>';
     } else {
 
-        $nombre = $_POST['nombre'];
-        $user = $_POST['usuario'];
+        $user = $_POST['nombre'];
         $email = $_POST['correo'];
         $pass = md5($_POST['clave']);
         $rol = $_POST['rol'];
 
-        $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' OR correo = '$email'");
+        $query = mysqli_query($conection, "SELECT * FROM usuarios WHERE nombre = '$user' OR correo = '$email'");
         $result = mysqli_fetch_array($query);
 
         if ($result > 0) {
             $alert = '<p class="msg_error">El correo o el usuario ya existe.</p>';
         } else {
-            $query_insert = mysqli_query($conection, "INSERT INTO usuario (nombre, correo, usuario, clave, rol) VALUE ('$nombre', '$email', '$user', '$pass', '$rol')");
+            $query_insert = mysqli_query($conection, "INSERT INTO usuarios (nombre, correo, clave, rol) VALUE ('$user', '$email', '$pass', '$rol')");
 
             if ($query_insert) {
                 $alert = '<p class="msg_save">Usuario creado correctamente.</p>';
@@ -35,16 +34,16 @@ if (!empty($_POST)) {
 }
 
 //	Datos de la Empresa
-$nombreEmpresa = '';
+/* $nombreEmpresa = '';
 
 $query_empresa = mysqli_query($conection, "SELECT nombre FROM configuracion");
 $row_empesa = mysqli_num_rows($query_empresa);
 
 if ($row_empesa > 0) {
-	while ($arrayInfoEmpresa  = mysqli_fetch_assoc($query_empresa)) {
-		$nombreEmpresa = $arrayInfoEmpresa['nombre'];
-	}
-}
+    while ($arrayInfoEmpresa  = mysqli_fetch_assoc($query_empresa)) {
+        $nombreEmpresa = $arrayInfoEmpresa['nombre'];
+    }
+} */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +56,7 @@ if ($row_empesa > 0) {
 
 <body>
     <?php include "include/navlateral.php"; ?>
-    <section id="dashboard">
+    <section class="dashboard">
 
         <div class="form_register">
             <h1 class="user_new"><i class="fa-solid fa-user-plus"></i> Registrar Usuario</h1>
@@ -68,8 +67,6 @@ if ($row_empesa > 0) {
 
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre Completo">
-                <label for="usuario">Usuario</label>
-                <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario">
                 <label for="correo">Correo Electrónico</label>
                 <input type="email" name="correo" id="correo" placeholder="ejemplo@gmail.com">
                 <label for="clave">Contraseña</label>
@@ -87,7 +84,7 @@ if ($row_empesa > 0) {
                     if ($result_rol > 0) {
                         while ($rol = mysqli_fetch_array($query_rol)) {
                     ?>
-                            <option value="<?php echo $rol["id_rol"] ?>"><?php echo $rol["rol"] ?></option>
+                            <option value="<?php echo $rol["id"] ?>"><?php echo $rol["rol"] ?></option>
                     <?php
                         }
                     }
@@ -103,8 +100,8 @@ if ($row_empesa > 0) {
 
 
 
-    <?php 
-    include "include/footer.php"; 
+    <?php
+    include "include/footer.php";
     ?>
 </body>
 

@@ -9,6 +9,7 @@ if (!empty($_POST)) {
         $alert = '<p class="msg_error">Todos los campos son obligatorios.</p>';
     } else {
 
+        $equipo = $_POST['equipo_id'];
         $nombre = $_POST['nombre'];
         $ruc = $_POST['cedula'];
         $n_remera = $_POST['n_remera'];
@@ -24,7 +25,7 @@ if (!empty($_POST)) {
         if ($result > 0) {
             $alert = '<p class="msg_error">El numero de Cedula ya existe!</p>';
         } else {
-            $query_insert = mysqli_query($conection, "INSERT INTO jugadores (nombre, cedula, n_remera, goles, targetas, usuario_id) VALUE ('$nombre', '$ruc', '$n_remera', '$goles', '$targetas' , '$usuario_id')");
+            $query_insert = mysqli_query($conection, "INSERT INTO jugadores (equipo_id, nombre, cedula, n_remera, goles, targetas, usuario_id) VALUE ('$equipo', '$nombre', '$ruc', '$n_remera', '$goles', '$targetas' , '$usuario_id')");
 
             if ($query_insert) {
                 $alert = '<p class="msg_save">Jugador creado correctamente.</p>';
@@ -67,7 +68,26 @@ if ($row_empesa > 0) {
 
             <form action="" method="post">
 
-                <label for="nombre">Nombre</label>
+                <label for="equipo">Nombre del Equipo</label>
+
+                <?php
+                $query_equipo = mysqli_query($conection, "SELECT * FROM equipos");
+                mysqli_close($conection);
+                $result_equipo = mysqli_num_rows($query_equipo);
+                ?>
+
+                <select name="equipo_id" id="equipo">
+                    <?php
+                    if ($result_equipo > 0) {
+                        while ($equipo = mysqli_fetch_array($query_equipo)) {
+                    ?>
+                            <option value="<?php echo $equipo["id"] ?>"><?php echo $equipo["nombre"] ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+                </select>
+                <label for="nombre">Nombre del Jugador</label>
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre Completo">
                 <label for="ruc">Cedula</label>
                 <input type="text" name="cedula" id="cedula" placeholder="Numero de Cedula">
@@ -83,14 +103,13 @@ if ($row_empesa > 0) {
             </form>
 
         </div>
-    
+
     </section>
 
 
 
     <?php
     include "include/footer.php";
-    mysqli_close($conection);
     ?>
 </body>
 
