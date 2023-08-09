@@ -86,3 +86,46 @@ select {
 }
 
 /* ====================================================== */
+
+/* DASHBOARD */
+
+.dashboard {
+    left: 250px;
+    background-color: rgb(150, 148, 148);
+    min-height: 100vh;
+    width: left;
+    padding: 10px 24px;
+    margin-left: 250px;
+}
+
+/* ====================================================== */
+
+/* ========= CONFIGURACION ========= */
+
+h4 {
+    text-align: center;
+    
+}
+
+.logoEmpresa {
+    display: webkit-flex;
+    display: mOZ-flex;
+    display: -mS-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin: 18px auto;
+    padding: 15px;
+    background: #E9E9E9;
+}
+
+.logoEmpresa img {
+    width: 100%;
+    height: 100%;
+}
+
+/* ====================================================== */

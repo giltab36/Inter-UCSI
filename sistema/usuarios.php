@@ -65,7 +65,7 @@ if ($row_empesa > 0) {
 
             <form action="" method="post">
 
-                <label for="nombre">Nombre</label>
+                <label for="nombre">Usuario</label>
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre Completo">
                 <label for="correo">Correo Electrónico</label>
                 <input type="email" name="correo" id="correo" placeholder="ejemplo@gmail.com">

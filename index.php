@@ -9,18 +9,18 @@ if (!empty($_SESSION['active'])) {
 } else {
 
     if (!empty($_POST)) {
-        if (empty($_POST['nombre']) || empty($_POST['clave'])) {
+        if (empty($_POST['usuario']) || empty($_POST['clave'])) {
             $alert = "Ingrese su nombre de usuario y su clave";
         } else {
 
             require_once "conexion.php";
 
-            $user = mysqli_real_escape_string($conection, $_POST['nombre']);
+            $user = mysqli_real_escape_string($conection, $_POST['usuario']);
             $pass = md5(mysqli_real_escape_string($conection, $_POST['clave']));
 
-            $query = mysqli_query($conection, "SELECT u.id, u.nombre, u.correo, u.state, u.rol, r.rol AS n_rol FROM usuarios u
+            $query = mysqli_query($conection, "SELECT u.id, u.usuario, u.nombre, u.correo, u.state, u.rol, r.rol AS n_rol FROM usuarios u
                                                 INNER JOIN rol r ON u.rol = r.id
-                                                WHERE u.nombre = '$user' AND u.clave = '$pass' AND u.state = 1");
+                                                WHERE u.usuario = '$user' AND u.clave = '$pass' AND u.state = 1");
             mysqli_close($conection);
             $result = mysqli_num_rows($query);
 
@@ -29,6 +29,7 @@ if (!empty($_SESSION['active'])) {
                 $_SESSION['active'] = true;
                 $_SESSION['idUser'] = $data['id'];
                 $_SESSION['nombre'] = $data['nombre'];
+                $_SESSION['user'] = $data['usuario'];
                 $_SESSION['email'] = $data['correo'];
                 $_SESSION['rol'] = $data['rol'];
                 $_SESSION['Nrol'] = $data['n_rol'];
@@ -62,9 +63,9 @@ if (!empty($_SESSION['active'])) {
     <div class="content">
         <form action="" method="post">
             <h3>Iniciar Sesión</h3>
-            <img src="./images/logoUcsi2.png" alt="Login">
+            <img src="./images/logoInter.png" alt="Login">
 
-            <input type="text" name="nombre" placeholder="Usuario">
+            <input type="text" name="usuario" placeholder="Usuario">
             <input type="password" name="clave" placeholder="Contraseña">
             <div class="alert" style="color: red;"><b><?php echo isset($alert) ? $alert : ''; ?></b></div>
             <input type="submit" value="Ingresar">
