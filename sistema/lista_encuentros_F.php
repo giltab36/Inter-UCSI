@@ -65,19 +65,20 @@ if ($row_empesa > 0) {
     <section class="dashboard">
             <div class="container">
                 <br>
-                <h1 align="center">JUGADORES REGISTRADOS</h1>
+                <h1 align="center">ENCUENTROS REGISTRADOS</h1>
                 <div class"row">
                     <div class="col-lg-12">
                         <table id="tablaUsuarios" class="table-striped table-bordered" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Equipo</th>
-                                    <th>Nombre</th>
-                                    <th>Cedula</th>
-                                    <th>N° Remera</th>
-                                    <th>Goles</th>
-                                    <th>Tarjetas</th>
+                                    <th>Campeonato</th>
+                                    <th>Fecha</th>
+                                    <th>Partido</th>
+                                    <th>Equipo A</th>
+                                    <th>Equipo B</th>
+                                    <th>Goles Equipo A</th>
+                                    <th>Equipo Equipo B</th>
                                 </tr>
                             </thead>
                         </table>
@@ -122,29 +123,32 @@ if ($row_empesa > 0) {
                             },
                         ],
                         "ajax": {
-                            "url": "BackJugadoresM.php",
+                            "url": "backEncuentroF.php",
                             "dataSrc": ""
                         },
                         "columns": [{
                                 "data": "id"
                             },
                             {
-                                "data": "equipo_nombre"
+                                "data": "campeonato"
                             },
                             {
-                                "data": "nombre"
+                                "data": "fecha"
                             },
                             {
-                                "data": "cedula"
+                                "data": "partido"
                             },
                             {
-                                "data": "n_remera"
+                                "data": "equipo_A"
                             },
                             {
-                                "data": "goles"
+                                "data": "equipo_B"
                             },
                             {
-                                "data": "targetas"
+                                "data": "gol_a"
+                            },
+                            {
+                                "data": "gol_b"
                             },
                         ]
                     });
@@ -152,12 +156,3 @@ if ($row_empesa > 0) {
             </script>
         </div>
     </section>
-
-
-
-    <?php
-    include "include/footer.php";
-    ?>
-</body>
-
-</html>
