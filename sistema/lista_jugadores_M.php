@@ -3,47 +3,8 @@ session_start();
 if ($_SESSION['rol'] != 1) {
     header("location: ./");
 }
-include "../conexion.php";
-
-if (!empty($_POST)) {
-    $alert = '';
-    if (empty($_POST['nombre'])) {
-        $alert = '<p class="msg_error">Todos los campos son obligatorios.</p>';
-    } else {
-
-        $nombre = $_POST['nombre'];
-        $usuario_id = $_SESSION['idUser'];
-        $estatus = $_POST['estatus'];
 
 
-        $query = mysqli_query($conection, "SELECT * FROM equipos WHERE nombre = '$nombre'");
-        $result = mysqli_fetch_array($query);
-
-        if ($result > 0) {
-            $alert = '<p class="msg_error">El equipo ya existe.</p>';
-        } else {
-            $query_insert = mysqli_query($conection, "INSERT INTO equipos (nombre, usuario_id, estatus) VALUE ('$nombre', '$usuario_id', '$estatus')");
-
-            if ($query_insert) {
-                $alert = '<p class="msg_save">Equipo creado correctamente.</p>';
-            } else {
-                $alert = '<p class="msg_error">Error al crear el equipo.</p>';
-            }
-        }
-    }
-}
-
-//	Datos de la Empresa
-/* $nombreEmpresa = '';
-
-$query_empresa = mysqli_query($conection, "SELECT nombre FROM configuracion");
-$row_empesa = mysqli_num_rows($query_empresa);
-
-if ($row_empesa > 0) {
-	while ($arrayInfoEmpresa  = mysqli_fetch_assoc($query_empresa)) {
-		$nombreEmpresa = $arrayInfoEmpresa['nombre'];
-	}
-} */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +46,7 @@ if ($row_empesa > 0) {
                 </div>
             </div>
             <!--Jquery. popper.js, Bootstrap JS-->
-            <script src="jquery/jquery-3.5.1.min.js"></script>
+            <script src="js/jquery.min.js"></script>
             <script src="popper/popper.min.js"></script>
             <script src="bootstrap/js/bootstrap.min.js"></script>
             <!--Datatables JS-->
