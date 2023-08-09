@@ -13,6 +13,7 @@ if (!empty($_POST)) {
 
         $nombre = $_POST['nombre'];
         $usuario_id = $_SESSION['idUser'];
+        $estatus = $_POST['estatus'];
 
 
         $query = mysqli_query($conection, "SELECT * FROM equipos WHERE nombre = '$nombre'");
@@ -21,7 +22,7 @@ if (!empty($_POST)) {
         if ($result > 0) {
             $alert = '<p class="msg_error">El equipo ya existe.</p>';
         } else {
-            $query_insert = mysqli_query($conection, "INSERT INTO equipos (nombre, usuario_id) VALUE ('$nombre', '$usuario_id')");
+            $query_insert = mysqli_query($conection, "INSERT INTO equipos (nombre, usuario_id, estatus) VALUE ('$nombre', '$usuario_id', '$estatus')");
 
             if ($query_insert) {
                 $alert = '<p class="msg_save">Equipo creado correctamente.</p>';
@@ -54,7 +55,7 @@ if ($row_empesa > 0) {
 </head>
 
 <body>
-    <?php include "include/navlateral.php"; ?>
+    <?php include "include/nav.php"; ?>
     <section class="dashboard">
 
         <div class="form_register">
@@ -64,9 +65,12 @@ if ($row_empesa > 0) {
 
             <form action="" method="post">
 
-                <label for="nombre">Nombre</label>
+                <h3><u>Categoria Femenino</u></h3>
+                <label for="nombre">Nombre del equipo</label>
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre Completo">
-                
+
+                <input type="hidden" name="estatus" id="" value='2' readonly>
+
                 <button type="submit" class="btn_save"><i class="fa-regular fa-floppy-disk"></i> Registrar</button>
 
             </form>

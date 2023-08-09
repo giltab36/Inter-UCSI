@@ -1,6 +1,5 @@
 <?php
 session_start();
-include "../conexion.php";
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +14,6 @@ include "../conexion.php";
 <body>
     <?php include "include/nav.php"; ?>
     <section class="dashboard">
-        
     </section>
 </body>
 

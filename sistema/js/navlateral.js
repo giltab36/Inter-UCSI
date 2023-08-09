@@ -23,7 +23,7 @@ modeToggle.addEventListener("click", () =>{
 });
 
 sidebarToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
+    sidebarToggle.classList.toggle("close");
     if(sidebar.classList.contains("close")){
         localStorage.setItem("status", "close");
     }else{

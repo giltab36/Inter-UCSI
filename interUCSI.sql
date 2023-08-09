@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2023 a las 23:49:19
+-- Tiempo de generación: 04-07-2023 a las 16:48:53
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -26,7 +26,8 @@ CREATE TABLE `encuentros` (
   `campeonato` text NOT NULL,
   `fecha` datetime NOT NULL,
   `partido` text NOT NULL,
-  `equipo` int(11) NOT NULL,
+  `equipo_a` int(11) NOT NULL,
+  `equipo_b` int(11) NOT NULL,
   `gol_a` int(11) NOT NULL,
   `gol_b` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL
@@ -41,7 +42,6 @@ CREATE TABLE `encuentros` (
 CREATE TABLE `equipos` (
   `id` int(11) NOT NULL,
   `nombre` int(11) NOT NULL,
-  `jugadores` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -53,6 +53,7 @@ CREATE TABLE `equipos` (
 
 CREATE TABLE `jugadores` (
   `id` int(11) NOT NULL,
+  `equipo_id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `cedula` text NOT NULL,
   `n_remera` int(11) NOT NULL,
@@ -111,15 +112,16 @@ INSERT INTO `usuario` (`id`, `nombre`, `correo`, `clave`, `rol`, `state`) VALUES
 --
 ALTER TABLE `encuentros`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `equipo` (`equipo`),
-  ADD KEY `usuario_id` (`usuario_id`);
+  ADD KEY `equipo` (`equipo_a`),
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `equipo_b` (`equipo_b`);
 
 --
 -- Indices de la tabla `equipos`
 --
 ALTER TABLE `equipos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `jugadores` (`jugadores`,`usuario_id`),
+  ADD KEY `jugadores` (`usuario_id`),
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
@@ -127,7 +129,8 @@ ALTER TABLE `equipos`
 --
 ALTER TABLE `jugadores`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario_id` (`usuario_id`);
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `equipo_id` (`equipo_id`);
 
 --
 -- Indices de la tabla `rol`
@@ -185,20 +188,21 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `encuentros`
   ADD CONSTRAINT `encuentros_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `encuentros_ibfk_2` FOREIGN KEY (`equipo`) REFERENCES `equipos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `encuentros_ibfk_2` FOREIGN KEY (`equipo_a`) REFERENCES `equipos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `encuentros_ibfk_3` FOREIGN KEY (`equipo_b`) REFERENCES `equipos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `equipos_ibfk_2` FOREIGN KEY (`jugadores`) REFERENCES `jugadores` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`equipo_id`) REFERENCES `equipos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `usuario`

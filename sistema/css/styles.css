@@ -1,4 +1,8 @@
 /* ======= CSS FORM ======= */
+h3 {
+    text-align: center;
+}
+
 .form_register {
     width: 450px;
     margin: auto;

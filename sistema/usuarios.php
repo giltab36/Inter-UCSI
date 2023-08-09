@@ -55,7 +55,7 @@ if ($row_empesa > 0) {
 </head>
 
 <body>
-    <?php include "include/navlateral.php"; ?>
+    <?php include "include/nav.php"; ?>
     <section class="dashboard">
 
         <div class="form_register">

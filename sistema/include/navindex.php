@@ -23,33 +23,33 @@ if (empty($_SESSION['active'])) {
                 </a>
             </li>
             <li><a href="dashboard.php">
-                    <i class="uil uil-clipboard-notes"></i>
+                    <i class="fa-solid fa-grid-horizontal"></i>
                     <span class="link-name">Dashborad</span>
                 </a>
             </li>
-            <li><a href="equipos_F.php">
+            <!-- <li><a href="equipos.php">
                     <i class="uil uil-bed"></i>
                     <span class="link-name">Registrar Equipos</span>
                 </a>
             </li>
-            <li><a href="jugadores_F.php">
+            <li><a href="jugadores.php">
                     <i class="uil uil-clipboard-notes"></i>
                     <span class="link-name">Registrar Jugadores</span>
                 </a>
             </li>
-            <li><a href="encuentros_F.php">
+            <li><a href="encuentros.php">
                     <i class="uil uil-file-graph"></i>
                     <span class="link-name">Registrar Encuentros</span>
                 </a>
             </li>
+            <li><a href="listados.php">
+                <i class="uil uil-file-graph"></i>
+                <span class="link-name">Listado</span>
+            </a>
+        </li> -->
             <li><a href="usuarios.php">
                     <i class="uil uil-file-graph"></i>
                     <span class="link-name">Registrar Usuarios</span>
-                </a>
-            </li>
-            <li><a href="listados.php">
-                    <i class="uil uil-file-graph"></i>
-                    <span class="link-name">Listado</span>
                 </a>
             </li>
             <li><a href="configuracion.php">
@@ -75,7 +75,6 @@ if (empty($_SESSION['active'])) {
                     <span class="switch"></span>
                 </div>
             </li>
-
         </ul>
     </div>
 </nav>

@@ -16,6 +16,7 @@ if (!empty($_POST)) {
         $goles = $_POST['goles'];
         $targetas = $_POST['targetas'];
         $usuario_id = $_SESSION['idUser'];
+        $estatus = $_POST['estatus'];
 
         $result = 0;
         if ((is_numeric($ruc)) and $ruc != 0) {
@@ -25,7 +26,7 @@ if (!empty($_POST)) {
         if ($result > 0) {
             $alert = '<p class="msg_error">El numero de Cedula ya existe!</p>';
         } else {
-            $query_insert = mysqli_query($conection, "INSERT INTO jugadores (equipo_id, nombre, cedula, n_remera, goles, targetas, usuario_id) VALUE ('$equipo', '$nombre', '$ruc', '$n_remera', '$goles', '$targetas' , '$usuario_id')");
+            $query_insert = mysqli_query($conection, "INSERT INTO jugadores (equipo_id, nombre, cedula, n_remera, goles, targetas, usuario_id, estatus) VALUE ('$equipo', '$nombre', '$ruc', '$n_remera', '$goles', '$targetas' , '$usuario_id', '$estatus')");
 
             if ($query_insert) {
                 $alert = '<p class="msg_save">Jugador creado correctamente.</p>';
@@ -58,7 +59,7 @@ if ($row_empesa > 0) {
 </head>
 
 <body>
-    <?php include "include/navlateral.php"; ?>
+    <?php include "include/nav.php"; ?>
     <section class="dashboard">
 
         <div class="form_register">
@@ -67,6 +68,8 @@ if ($row_empesa > 0) {
             <div class="alerta"><?php echo isset($alert) ? $alert : ''; ?></div>
 
             <form action="" method="post">
+
+                <h3><u>Categoria Masculino</u></h3>
 
                 <label for="equipo">Nombre del Equipo</label>
 
@@ -97,6 +100,8 @@ if ($row_empesa > 0) {
                 <input type="text" name="goles" id="goles" placeholder="Ingrese Goles Anotados">
                 <label for="targetas">Targetas Acumuladas</label>
                 <input type="text" name="targetas" id="tagetas" placeholder="Ingrese Camtidad de Targetas">
+
+                <input type="hidden" name="estatus" id="" value='1' readonly>
 
                 <button type="submit" class="btn_save"><i class="fa-regular fa-floppy-disk"></i> Registrar</button>
 

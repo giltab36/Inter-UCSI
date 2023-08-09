@@ -54,7 +54,7 @@ if (!empty($_SESSION['active'])) {
     <title>Iniciar Sesion</title>
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/png" href="./images/logo.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="images/logoUcsi2.png" sizes="16x16">
 </head>
 
 <body style="background: url('./images/fondo1.jpg') no-repeat; background-size: 100% 100%; background-position: center;">

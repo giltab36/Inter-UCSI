@@ -18,6 +18,7 @@ if (!empty($_POST)) {
         $gol_a = $_POST['gol_a'];
         $gol_b = $_POST['gol_b'];
         $usuario_id = $_SESSION['idUser'];
+        $estatus = $_POST['estatus'];
 
 
         /* $query = mysqli_query($conection, "SELECT * FROM equipos WHERE nombre = '$nombre'");
@@ -26,7 +27,7 @@ if (!empty($_POST)) {
         if ($result > 0) {
             $alert = '<p class="msg_error">El equipo ya existe.</p>';
         } else { */
-        $query_insert = mysqli_query($conection, "INSERT INTO encuentros (campeonato, partido, equipo_a, equipo_b, gol_a, gol_b, usuario_id) VALUE ('$campeonato', '$partido', '$equipo_a', '$equipo_b', '$gol_a', '$gol_b', '$usuario_id')");
+        $query_insert = mysqli_query($conection, "INSERT INTO encuentros (campeonato, partido, equipo_a, equipo_b, gol_a, gol_b, usuario_id, estatus) VALUE ('$campeonato', '$partido', '$equipo_a', '$equipo_b', '$gol_a', '$gol_b', '$usuario_id', '$estatus')");
 
         if ($query_insert) {
             $alert = '<p class="msg_save">Encuento registrado correctamente.</p>';
@@ -59,7 +60,7 @@ if ($row_empesa > 0) {
 </head>
 
 <body>
-    <?php include "include/navlateral.php"; ?>
+    <?php include "include/nav.php"; ?>
     <section class="dashboard">
 
         <div class="form_register">
@@ -69,15 +70,16 @@ if ($row_empesa > 0) {
 
             <form action="" method="post">
 
+                <h3><u>Categoria Femenino</u></h3>
                 <label for="campeonato">Nombre del Campeonato</label>
                 <input type="text" name="campeonato" id="campeonato" placeholder="Nombre Completo">
-                
+
                 <label for="fecha">Fecha</label>
                 <input type="date" name="fecha" id="fecha">
 
                 <label for="partido">N° de Partido</label>
                 <input type="text" name="partido" id="partido" placeholder="N° del Partido Jugado">
-                
+
                 <label for="equipo_a">Equipo A</label>
                 <?php
                 $query_equipo_a = mysqli_query($conection, "SELECT * FROM equipos");
@@ -115,9 +117,11 @@ if ($row_empesa > 0) {
 
                 <label for="gol_a">Goles del Equipo A</label>
                 <input type="number" name="gol_a" id="gol_a" placeholder="Ingrese la cantidad de goles del primer equipo">
-                
+
                 <label for="gol_b">Goles del Equipo B</label>
                 <input type="number" name="gol_b" id="gol_b" placeholder="Ingrese la cantidad de goles del segundo equipo">
+
+                <input type="hidden" name="estatus" id="" value='2' readonly>
 
                 <button type="submit" class="btn_save"><i class="fa-regular fa-floppy-disk"></i> Registrar</button>
 
